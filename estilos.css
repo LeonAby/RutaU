@@ -1,0 +1,24 @@
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{min-height:100vh;background:#f4f7fb;color:#172033}
+.contenedor{min-height:100vh;display:flex}
+.presentacion{width:52%;background:linear-gradient(135deg,#1261a0,#0b3d91);color:white;display:flex;flex-direction:column;justify-content:center;padding:70px}
+.icono{font-size:70px;margin-bottom:15px}.icono.pequeño{font-size:45px;margin-bottom:5px}
+.presentacion h1{font-size:58px;margin-bottom:8px}.presentacion h2{font-size:25px;margin-bottom:20px}
+.presentacion p{max-width:520px;font-size:18px;line-height:1.6}
+.login{width:48%;display:flex;align-items:center;justify-content:center;padding:30px}
+.pagina-simple{display:flex;align-items:center;justify-content:center;padding:25px}
+.tarjeta{width:100%;max-width:430px;background:white;padding:40px;border-radius:18px;box-shadow:0 10px 35px rgba(0,0,0,.12)}
+.tarjeta h2{font-size:30px;margin-bottom:8px}.subtitulo{color:#6b7280;margin-bottom:30px}
+form label{display:block;font-weight:bold;margin:16px 0 8px}
+input[type=text],input[type=password],input[type=email]{width:100%;padding:14px;border:1px solid #d1d5db;border-radius:9px;outline:none;font-size:15px}
+input:focus{border-color:#1261a0}
+.password-box{position:relative}.password-box input{padding-right:80px}
+.password-box button{position:absolute;right:7px;top:7px;height:38px;border:none;background:transparent;color:#1261a0;cursor:pointer;font-weight:bold}
+.opciones{display:flex;justify-content:space-between;align-items:center;margin:18px 0;font-size:13px}
+.recordar{display:flex!important;align-items:center;gap:6px;margin:0!important;font-weight:normal!important}
+.opciones a,.registro a{color:#1261a0;text-decoration:none;font-weight:bold}
+.btn{width:100%;padding:14px;border:none;border-radius:9px;background:#1261a0;color:white;font-size:16px;font-weight:bold;cursor:pointer;margin-top:8px}
+.btn:hover{background:#0b3d91}
+#mensaje,#mensajeRegistro,#mensajeRecuperar{text-align:center;margin-top:15px;font-weight:bold;line-height:1.4}
+.registro{text-align:center;margin-top:25px;color:#6b7280;font-size:14px}
+@media(max-width:800px){.contenedor{flex-direction:column}.presentacion,.login{width:100%}.presentacion{padding:45px 30px;text-align:center}.presentacion h1{font-size:45px}.presentacion h2{font-size:21px}.tarjeta{padding:30px 25px}}
