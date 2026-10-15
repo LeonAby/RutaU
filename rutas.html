@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>RutaU - Rutas</title>
+
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         ENCABEZADO
+    =========================================== -->
+
+    <header class="encabezado">
+
+        <a href="inicio.html" class="logo logo-enlace">
+            🚌 <span>RutaU</span>
+        </a>
+
+        <div class="usuario">
+            <span>👤</span>
+            <span>Estudiante</span>
+        </div>
+
+    </header>
+
+
+    <!-- ==========================================
+         CONTENIDO PRINCIPAL
+    =========================================== -->
+
+    <main class="rutas-container">
+
+        <!-- BOTÓN REGRESAR -->
+
+        <a href="inicio.html" class="volver">
+            ← Volver al inicio
+        </a>
+
+
+        <!-- TÍTULO -->
+
+        <section class="titulo-rutas">
+
+            <p>Transporte universitario</p>
+
+            <h1>Selecciona una ruta</h1>
+
+            <span>
+                Elige la ruta que necesitas utilizar.
+            </span>
+
+        </section>
+
+
+        <!-- ======================================
+             LISTA DE RUTAS
+        ======================================= -->
+
+        <section class="lista-rutas">
+
+            <!-- RUTA 1 -->
+
+            <a
+                href="paradas.html?ruta=1"
+                class="tarjeta-ruta ruta-azul"
+            >
+
+                <div class="numero-ruta">
+                    1
+                </div>
+
+                <div class="informacion-ruta">
+
+                    <h2>Ruta 1</h2>
+
+                    <p>Campus → Centro</p>
+
+                    <div class="estado-ruta">
+                        🟢 En servicio
+                    </div>
+
+                </div>
+
+                <div class="flecha-ruta">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- RUTA 2 -->
+
+            <a
+                href="paradas.html?ruta=2"
+                class="tarjeta-ruta ruta-verde"
+            >
+
+                <div class="numero-ruta">
+                    2
+                </div>
+
+                <div class="informacion-ruta">
+
+                    <h2>Ruta 2</h2>
+
+                    <p>Campus → Norte</p>
+
+                    <div class="estado-ruta">
+                        🟢 En servicio
+                    </div>
+
+                </div>
+
+                <div class="flecha-ruta">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- RUTA 3 -->
+
+            <a
+                href="paradas.html?ruta=3"
+                class="tarjeta-ruta ruta-morada"
+            >
+
+                <div class="numero-ruta">
+                    3
+                </div>
+
+                <div class="informacion-ruta">
+
+                    <h2>Ruta 3</h2>
+
+                    <p>Campus → Sur</p>
+
+                    <div class="estado-ruta">
+                        🟢 En servicio
+                    </div>
+
+                </div>
+
+                <div class="flecha-ruta">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- RUTA 4 -->
+
+            <a
+                href="paradas.html?ruta=4"
+                class="tarjeta-ruta ruta-naranja"
+            >
+
+                <div class="numero-ruta">
+                    4
+                </div>
+
+                <div class="informacion-ruta">
+
+                    <h2>Ruta 4</h2>
+
+                    <p>Campus → Oeste</p>
+
+                    <div class="estado-ruta">
+                        🟢 En servicio
+                    </div>
+
+                </div>
+
+                <div class="flecha-ruta">
+                    →
+                </div>
+
+            </a>
+
+        </section>
+
+
+        <!-- ======================================
+             INFORMACIÓN
+        ======================================= -->
+
+        <section class="informacion-transporte">
+
+            <div class="icono-info">
+                💡
+            </div>
+
+            <div>
+
+                <h3>Información</h3>
+
+                <p>
+                    Selecciona una ruta para consultar
+                    sus paradas y conocer la ubicación
+                    de la unidad.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================================
+         MENÚ INFERIOR
+    =========================================== -->
+
+    <nav class="menu-inferior">
+
+        <a href="inicio.html">
+            🏠
+            <span>Inicio</span>
+        </a>
+
+        <a
+            href="rutas.html"
+            class="activo"
+            aria-current="page"
+        >
+            🚌
+            <span>Rutas</span>
+        </a>
+
+        <a href="paradas.html">
+            📍
+            <span>Paradas</span>
+        </a>
+
+        <a href="#" id="enlacePerfil">
+            👤
+            <span>Perfil</span>
+        </a>
+
+    </nav>
+
+</body>
+
+</html>

@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RutaU - Seleccionar parada</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body class="pagina-paradas">
+
+    <!-- Encabezado -->
+    <header class="encabezado">
+        <a href="inicio.html" class="logo logo-enlace">
+            🚌 <span>RutaU</span>
+        </a>
+
+        <div class="usuario">
+            <span>👤</span>
+            <span>Estudiante</span>
+        </div>
+    </header>
+
+    <main class="paradas-container">
+
+        <!-- Regresar -->
+        <a href="rutas.html" class="volver">
+            ← Volver a las rutas
+        </a>
+
+        <!-- Título -->
+        <section class="encabezado-paradas">
+            <div class="etiqueta-paradas">
+                PASO 2 · TU RECORRIDO
+            </div>
+
+            <h1>¿Dónde vas a abordar?</h1>
+
+            <p>
+                Selecciona la parada donde esperarás tu transporte
+                universitario.
+            </p>
+        </section>
+
+        <!-- Ruta seleccionada -->
+        <section class="ruta-seleccionada">
+            <div class="icono-bus-paradas">🚌</div>
+
+            <div>
+                <span class="texto-secundario">Tu ruta seleccionada</span>
+                <h2 id="nombreRuta">Ruta 1</h2>
+                <p id="destinoRuta">Campus → Centro</p>
+            </div>
+
+            <span class="estado-demo">Servicio de demostración</span>
+        </section>
+
+        <!-- Lista de paradas -->
+        <section class="seccion-lista-paradas">
+            <div class="titulo-lista-paradas">
+                <div>
+                    <h2>Paradas disponibles</h2>
+                    <p>Selecciona una opción para continuar.</p>
+                </div>
+
+                <span class="contador-paradas" id="contadorParadas">
+                    0 seleccionadas
+                </span>
+            </div>
+
+            <form id="formParadas">
+
+                <div class="lista-paradas">
+
+                    <label class="opcion-parada">
+                        <input type="radio" name="parada" value="Biblioteca" required>
+                        <span class="radio-personalizado"></span>
+                        <span class="icono-parada">📚</span>
+                        <span class="datos-parada">
+                            <strong>Biblioteca</strong>
+                            <small>Parada junto a la biblioteca</small>
+                        </span>
+                        <span class="numero-parada">01</span>
+                    </label>
+
+                    <label class="opcion-parada">
+                        <input type="radio" name="parada" value="Rectoría" required>
+                        <span class="radio-personalizado"></span>
+                        <span class="icono-parada">🏛️</span>
+                        <span class="datos-parada">
+                            <strong>Rectoría</strong>
+                            <small>Zona administrativa</small>
+                        </span>
+                        <span class="numero-parada">02</span>
+                    </label>
+
+                    <label class="opcion-parada">
+                        <input type="radio" name="parada" value="Auditorio" required>
+                        <span class="radio-personalizado"></span>
+                        <span class="icono-parada">🎓</span>
+                        <span class="datos-parada">
+                            <strong>Auditorio</strong>
+                            <small>Área del auditorio universitario</small>
+                        </span>
+                        <span class="numero-parada">03</span>
+                    </label>
+
+                    <label class="opcion-parada">
+                        <input type="radio" name="parada" value="Centro de estudiantes" required>
+                        <span class="radio-personalizado"></span>
+                        <span class="icono-parada">👥</span>
+                        <span class="datos-parada">
+                            <strong>Centro de estudiantes</strong>
+                            <small>Zona de convivencia estudiantil</small>
+                        </span>
+                        <span class="numero-parada">04</span>
+                    </label>
+
+                    <label class="opcion-parada">
+                        <input type="radio" name="parada" value="Entrada principal" required>
+                        <span class="radio-personalizado"></span>
+                        <span class="icono-parada">📍</span>
+                        <span class="datos-parada">
+                            <strong>Entrada principal</strong>
+                            <small>Acceso principal al campus</small>
+                        </span>
+                        <span class="numero-parada">05</span>
+                    </label>
+
+                </div>
+
+                <p id="mensajeParada" class="mensaje-parada" role="status"></p>
+
+                <button type="submit" class="boton-continuar-paradas">
+                    Confirmar parada
+                    <span>→</span>
+                </button>
+
+                <p class="nota-paradas">
+                    Podrás continuar al siguiente paso después de confirmar
+                    tu parada.
+                </p>
+
+            </form>
+        </section>
+
+        <!-- Información -->
+        <aside class="aviso-paradas">
+            <span>💡</span>
+            <div>
+                <strong>Antes de continuar</strong>
+                <p>
+                    Asegúrate de elegir la parada donde realmente
+                    abordarás la unidad.
+                </p>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- Navegación inferior -->
+    <nav class="menu-inferior">
+        <a href="inicio.html">
+            🏠 <span>Inicio</span>
+        </a>
+
+        <a href="rutas.html" class="activo">
+            🚌 <span>Rutas</span>
+        </a>
+
+        <a href="paradas.html" aria-current="page">
+            📍 <span>Paradas</span>
+        </a>
+
+        <a href="#" id="enlacePerfil">
+            👤 <span>Perfil</span>
+        </a>
+    </nav>
+
+    <script>
+        // Obtener la ruta elegida en la pantalla anterior.
+        const parametros = new URLSearchParams(window.location.search);
+        const numeroRuta = parametros.get("ruta") || "1";
+
+        const rutas = {
+            "1": { nombre: "Ruta 1", destino: "Campus → Centro" },
+            "2": { nombre: "Ruta 2", destino: "Campus → Norte" },
+            "3": { nombre: "Ruta 3", destino: "Campus → Sur" },
+            "4": { nombre: "Ruta 4", destino: "Campus → Oeste" }
+        };
+
+        const ruta = rutas[numeroRuta] || rutas["1"];
+
+        document.getElementById("nombreRuta").textContent = ruta.nombre;
+        document.getElementById("destinoRuta").textContent = ruta.destino;
+
+        // Marcar visualmente la parada elegida.
+        const opciones = document.querySelectorAll('input[name="parada"]');
+        const contador = document.getElementById("contadorParadas");
+        const mensaje = document.getElementById("mensajeParada");
+
+        opciones.forEach(opcion => {
+            opcion.addEventListener("change", () => {
+                document.querySelectorAll(".opcion-parada").forEach(tarjeta => {
+                    tarjeta.classList.remove("parada-activa");
+                });
+
+                opcion.closest(".opcion-parada").classList.add("parada-activa");
+                contador.textContent = "1 seleccionada";
+                mensaje.textContent = "";
+                mensaje.className = "mensaje-parada";
+            });
+        });
+
+        // Guardar la selección para utilizarla en el siguiente módulo.
+        
+document.getElementById("formParadas").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const seleccionada = document.querySelector(
+        'input[name="parada"]:checked'
+    );
+
+    if (!seleccionada) {
+        mensaje.textContent =
+            "Selecciona una parada antes de continuar.";
+
+        mensaje.className = "mensaje-parada error";
+        return;
+    }
+
+    const datosSeleccion = {
+        numeroRuta: numeroRuta,
+        nombreRuta: ruta.nombre,
+        destinoRuta: ruta.destino,
+        parada: seleccionada.value
+    };
+
+    localStorage.setItem(
+        "rutaUSeleccion",
+        JSON.stringify(datosSeleccion)
+    );
+
+    // Continuar a la pantalla de ubicación de la unidad.
+    window.location.href = "unidad.html";
+});
+
+    </script>
+
+</body>
+</html>

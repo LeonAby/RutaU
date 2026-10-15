@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RutaU - Asientos disponibles</title>
+
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body class="pagina-asientos">
+
+    <!-- ENCABEZADO -->
+    <header class="encabezado">
+
+        <a href="inicio.html" class="logo logo-enlace">
+            🚌 <span>RutaU</span>
+        </a>
+
+        <div class="usuario">
+            <span>👤</span>
+            <span>Estudiante</span>
+        </div>
+
+    </header>
+
+    <!-- CONTENIDO -->
+    <main class="asientos-container">
+
+        <a href="unidad.html" class="volver">
+            ← Volver a la unidad
+        </a>
+
+        <!-- TÍTULO -->
+        <section class="titulo-asientos">
+
+            <span class="etiqueta-asientos">
+                PASO 4 · PREPARA TU VIAJE
+            </span>
+
+            <h1>Elige tu asiento</h1>
+
+            <p>
+                Consulta los lugares disponibles y selecciona
+                dónde deseas sentarte.
+            </p>
+
+        </section>
+
+        <!-- RESUMEN DEL VIAJE -->
+        <section class="resumen-asientos">
+
+            <div class="resumen-asientos-icono">🚌</div>
+
+            <div class="resumen-asientos-datos">
+
+                <span>Tu recorrido</span>
+
+                <h2 id="nombreRuta">Ruta 1</h2>
+
+                <p id="nombreParadaResumen">Parada: Biblioteca</p>
+
+            </div>
+
+            <div class="etiqueta-demo-asientos">
+                Datos de demostración
+            </div>
+
+        </section>
+
+        <!-- DISPONIBILIDAD -->
+        <section class="panel-disponibilidad">
+
+            <div class="disponibilidad-item">
+                <span class="indicador disponible"></span>
+                <span>Disponible</span>
+                <strong id="cantidadDisponibles">8</strong>
+            </div>
+
+            <div class="disponibilidad-item">
+                <span class="indicador ocupado"></span>
+                <span>Ocupado</span>
+                <strong id="cantidadOcupados">4</strong>
+            </div>
+
+            <div class="disponibilidad-item">
+                <span class="indicador seleccionado"></span>
+                <span>Tu selección</span>
+                <strong id="cantidadSeleccionados">0</strong>
+            </div>
+
+        </section>
+
+        <!-- DISTRIBUCIÓN DE ASIENTOS -->
+        <section class="panel-autobus">
+
+            <div class="titulo-autobus">
+                <div>
+                    <h2>Distribución del autobús</h2>
+                    <p>Selecciona un asiento libre.</p>
+                </div>
+
+                <span class="capacidad-autobus">12 lugares</span>
+            </div>
+
+            <!-- PARTE DELANTERA -->
+            <div class="frente-autobus">
+
+                <span>FRENTE DEL AUTOBÚS</span>
+
+                <div class="volante-conductor">
+                    <span>🛞</span>
+                    <small>Conductor</small>
+                </div>
+
+            </div>
+
+            <!-- ASIENTOS GENERADOS CON JAVASCRIPT -->
+            <div
+                class="rejilla-asientos"
+                id="rejillaAsientos"
+                aria-label="Distribución de los asientos"
+            ></div>
+
+            <div class="parte-trasera">
+                PARTE TRASERA
+            </div>
+
+        </section>
+
+        <!-- ASIENTO SELECCIONADO -->
+        <section class="resumen-seleccion">
+
+            <div class="icono-resumen-seleccion">💺</div>
+
+            <div class="texto-resumen-seleccion">
+
+                <span>Asiento seleccionado</span>
+
+                <h3 id="asientoElegido">Ninguno</h3>
+
+                <p id="mensajeSeleccion">
+                    Selecciona uno de los asientos disponibles.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- AVISO -->
+        <section class="aviso-asientos">
+            <span>💡</span>
+
+            <p>
+                La disponibilidad mostrada es simulada.
+                En una versión conectada, los lugares se actualizarán
+                con los datos reales de la unidad.
+            </p>
+        </section>
+
+        <!-- BOTONES -->
+        <div class="acciones-asientos">
+
+            <button
+                type="button"
+                class="boton-confirmar-asiento"
+                id="botonConfirmar"
+                disabled
+            >
+                Confirmar asiento
+                <span>→</span>
+            </button>
+
+            <button
+                type="button"
+                class="boton-limpiar-asiento"
+                id="botonLimpiar"
+            >
+                Quitar selección
+            </button>
+
+        </div>
+
+        <p id="mensajeFinalAsiento" class="mensaje-final-asiento" role="status"></p>
+
+    </main>
+
+    <!-- MENÚ INFERIOR -->
+    <nav class="menu-inferior">
+
+        <a href="inicio.html">
+            🏠
+            <span>Inicio</span>
+        </a>
+
+        <a href="rutas.html">
+            🚌
+            <span>Rutas</span>
+        </a>
+
+        <a href="unidad.html">
+            📍
+            <span>Mapa</span>
+        </a>
+
+        <a href="#" id="enlacePerfil">
+            👤
+            <span>Perfil</span>
+        </a>
+
+    </nav>
+
+    <script>
+        // Recuperar la información del viaje.
+        let viaje = null;
+
+        try {
+            viaje = JSON.parse(localStorage.getItem("rutaUSeleccion"));
+        } catch (error) {
+            viaje = null;
+        }
+
+        if (!viaje) {
+            viaje = {
+                numeroRuta: "1",
+                nombreRuta: "Ruta 1",
+                destinoRuta: "Campus → Centro",
+                parada: "Biblioteca"
+            };
+        }
+
+        document.getElementById("nombreRuta").textContent =
+            viaje.nombreRuta || "Ruta 1";
+
+        document.getElementById("nombreParadaResumen").textContent =
+            "Parada: " + (viaje.parada || "Biblioteca");
+
+        /*
+         * Distribución de demostración:
+         * 12 asientos en total.
+         * Los asientos 3, 6, 9 y 12 aparecen ocupados.
+         */
+        const totalAsientos = 12;
+        const asientosOcupados = [3, 6, 9, 12];
+
+        const rejilla = document.getElementById("rejillaAsientos");
+        const cantidadDisponibles = document.getElementById("cantidadDisponibles");
+        const cantidadOcupados = document.getElementById("cantidadOcupados");
+        const cantidadSeleccionados = document.getElementById("cantidadSeleccionados");
+
+        const asientoElegido = document.getElementById("asientoElegido");
+        const mensajeSeleccion = document.getElementById("mensajeSeleccion");
+        const mensajeFinal = document.getElementById("mensajeFinalAsiento");
+
+        const botonConfirmar = document.getElementById("botonConfirmar");
+        const botonLimpiar = document.getElementById("botonLimpiar");
+
+        let asientoSeleccionado = null;
+
+        // Crear visualmente los asientos.
+        for (let numero = 1; numero <= totalAsientos; numero++) {
+
+            const asiento = document.createElement("button");
+
+            asiento.type = "button";
+            asiento.classList.add("asiento");
+
+            asiento.textContent = numero;
+            asiento.setAttribute("aria-label", "Asiento " + numero);
+
+            if (asientosOcupados.includes(numero)) {
+
+                asiento.classList.add("asiento-ocupado");
+                asiento.disabled = true;
+                asiento.setAttribute("aria-label", "Asiento " + numero + ", ocupado");
+
+            } else {
+
+                asiento.classList.add("asiento-disponible");
+
+                asiento.addEventListener("click", () => {
+
+                    // Quitar la selección visual anterior.
+                    document.querySelectorAll(".asiento-seleccionado").forEach(elemento => {
+                        elemento.classList.remove("asiento-seleccionado");
+                    });
+
+                    // Seleccionar el asiento pulsado.
+                    asiento.classList.add("asiento-seleccionado");
+
+                    asientoSeleccionado = numero;
+
+                    actualizarResumen();
+
+                });
+
+            }
+
+            rejilla.appendChild(asiento);
+        }
+
+        // Actualizar cantidades y resumen.
+        function actualizarResumen() {
+
+            const ocupados = asientosOcupados.length;
+            const disponibles = totalAsientos - ocupados;
+
+            cantidadDisponibles.textContent = disponibles;
+            cantidadOcupados.textContent = ocupados;
+            cantidadSeleccionados.textContent = asientoSeleccionado ? 1 : 0;
+
+            if (asientoSeleccionado !== null) {
+
+                asientoElegido.textContent = "Asiento " + asientoSeleccionado;
+
+                mensajeSeleccion.textContent =
+                    "Has seleccionado este lugar para tu viaje.";
+
+                botonConfirmar.disabled = false;
+
+                mensajeFinal.textContent = "";
+                mensajeFinal.className = "mensaje-final-asiento";
+
+            } else {
+
+                asientoElegido.textContent = "Ninguno";
+
+                mensajeSeleccion.textContent =
+                    "Selecciona uno de los asientos disponibles.";
+
+                botonConfirmar.disabled = true;
+
+            }
+
+        }
+
+        // Quitar selección.
+        botonLimpiar.addEventListener("click", () => {
+
+            asientoSeleccionado = null;
+
+            document.querySelectorAll(".asiento-seleccionado").forEach(elemento => {
+                elemento.classList.remove("asiento-seleccionado");
+            });
+
+            actualizarResumen();
+
+        });
+
+        // Confirmar y guardar el asiento.
+        botonConfirmar.addEventListener("click", () => {
+
+            if (asientoSeleccionado === null) {
+                return;
+            }
+
+            viaje.asiento = asientoSeleccionado;
+            viaje.asientoConfirmado = true;
+
+            localStorage.setItem(
+                "rutaUSeleccion",
+                JSON.stringify(viaje)
+            );
+
+            mensajeFinal.textContent =
+                "¡Asiento " + asientoSeleccionado +
+                " confirmado! Tu selección se guardó correctamente.";
+
+            mensajeFinal.className = "mensaje-final-asiento exito";
+
+            // El siguiente módulo será la confirmación de abordaje.
+        });
+
+        actualizarResumen();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RutaU - Ubicación de la unidad</title>
+
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body class="pagina-unidad">
+
+    <!-- ENCABEZADO -->
+    <header class="encabezado">
+
+        <a href="inicio.html" class="logo logo-enlace">
+            🚌 <span>RutaU</span>
+        </a>
+
+        <div class="usuario">
+            <span>👤</span>
+            <span>Estudiante</span>
+        </div>
+
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="unidad-container">
+
+        <a href="paradas.html" class="volver">
+            ← Volver a las paradas
+        </a>
+
+        <!-- TITULO -->
+        <section class="titulo-unidad">
+
+            <span class="etiqueta-unidad">
+                SEGUIMIENTO DE TRANSPORTE
+            </span>
+
+            <h1>Tu unidad está en camino</h1>
+
+            <p>
+                Consulta la información de tu recorrido
+                y prepárate para abordar.
+            </p>
+
+        </section>
+
+        <!-- INFORMACIÓN DE RUTA -->
+        <section class="resumen-unidad">
+
+            <div class="resumen-icono">
+                🚌
+            </div>
+
+            <div class="resumen-datos">
+
+                <span>Ruta seleccionada</span>
+
+                <h2 id="nombreRuta">Ruta 1</h2>
+
+                <p id="destinoRuta">Campus → Centro</p>
+
+            </div>
+
+            <div class="estado-unidad">
+                <span class="punto-verde"></span>
+                <span>En camino</span>
+            </div>
+
+        </section>
+
+        <!-- MAPA ILUSTRATIVO -->
+        <section class="tarjeta-mapa">
+
+            <div class="encabezado-mapa">
+
+                <div>
+                    <h2>Ubicación de la unidad</h2>
+                    <p>Vista ilustrativa del recorrido</p>
+                </div>
+
+                <span class="etiqueta-mapa">
+                    <span class="punto-verde"></span>
+                    Demo
+                </span>
+
+            </div>
+
+            <div class="mapa-ilustrativo">
+
+                <!-- Calles -->
+                <div class="calle calle-horizontal calle-h1"></div>
+                <div class="calle calle-horizontal calle-h2"></div>
+                <div class="calle calle-horizontal calle-h3"></div>
+
+                <div class="calle calle-vertical calle-v1"></div>
+                <div class="calle calle-vertical calle-v2"></div>
+                <div class="calle calle-vertical calle-v3"></div>
+
+                <!-- Zonas verdes -->
+                <div class="zona-verde zona-1"></div>
+                <div class="zona-verde zona-2"></div>
+
+                <!-- Recorrido -->
+                <svg
+                    class="linea-recorrido"
+                    viewBox="0 0 600 340"
+                    preserveAspectRatio="none"
+                    aria-label="Representación ilustrativa de la ruta"
+                >
+                    <path
+                        d="M 95 285 L 165 235 L 225 235 L 290 165 L 365 165 L 420 105 L 515 65"
+                        fill="none"
+                        stroke="#536DE5"
+                        stroke-width="7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-dasharray="12 8"
+                    />
+                </svg>
+
+                <!-- Parada seleccionada -->
+                <div class="marcador-parada">
+
+                    <span>📍</span>
+
+                    <strong id="nombreParadaMapa">
+                        Tu parada
+                    </strong>
+
+                </div>
+
+                <!-- Unidad -->
+                <div class="marcador-unidad">
+                    🚌
+                </div>
+
+                <div class="etiqueta-campus">
+                    Campus universitario
+                </div>
+
+                <div class="leyenda-mapa">
+                    <span>
+                        <i class="leyenda-bus">🚌</i>
+                        Unidad
+                    </span>
+
+                    <span>
+                        <i class="leyenda-pin">●</i>
+                        Tu parada
+                    </span>
+                </div>
+
+            </div>
+
+            <p class="nota-mapa">
+                El mapa es ilustrativo. La ubicación GPS real
+                todavía no está conectada.
+            </p>
+
+        </section>
+
+        <!-- TIEMPO DE LLEGADA -->
+        <section class="tiempo-unidad">
+
+            <div class="reloj-unidad">
+                ◷
+            </div>
+
+            <div class="tiempo-datos">
+
+                <span>Tiempo estimado de llegada</span>
+
+                <h2>
+                    <span id="tiempoLlegada">5</span>
+                    <small>minutos</small>
+                </h2>
+
+                <p>Estimación de demostración</p>
+
+            </div>
+
+            <div class="distancia-unidad">
+
+                <span>Distancia</span>
+
+                <strong>2.3 km</strong>
+
+            </div>
+
+        </section>
+
+        <!-- PARADA DE ABORDAJE -->
+        <section class="detalle-parada">
+
+            <div class="icono-detalle-parada">
+                📍
+            </div>
+
+            <div class="datos-detalle-parada">
+
+                <span>Tu parada de abordaje</span>
+
+                <h3 id="nombreParada">
+                    Biblioteca
+                </h3>
+
+                <p>
+                    Espera la unidad en un lugar seguro
+                    y visible.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- AVISO -->
+        <section class="aviso-unidad">
+
+            <span>💡</span>
+
+            <p>
+                Mantente atento a las notificaciones y
+                verifica que la unidad corresponda a tu ruta.
+            </p>
+
+        </section>
+
+        <!-- BOTÓN ASIENTOS -->
+        <button
+            type="button"
+            class="boton-asientos"
+            id="botonAsientos"
+        >
+            Consultar asientos disponibles
+            <span>→</span>
+        </button>
+
+        <p class="nota-demo-final">
+            Los datos de ubicación, distancia y llegada
+            son simulados para esta versión del proyecto.
+        </p>
+
+    </main>
+
+    <!-- MENÚ INFERIOR -->
+    <nav class="menu-inferior">
+
+        <a href="inicio.html">
+            🏠
+            <span>Inicio</span>
+        </a>
+
+        <a href="rutas.html">
+            🚌
+            <span>Rutas</span>
+        </a>
+
+        <a href="unidad.html" class="activo" aria-current="page">
+            📍
+            <span>Mapa</span>
+        </a>
+
+        <a href="#" id="enlacePerfil">
+            👤
+            <span>Perfil</span>
+        </a>
+
+    </nav>
+
+    <script>
+        // Recuperar la selección realizada en la pantalla anterior.
+        let seleccion = null;
+
+        try {
+            seleccion = JSON.parse(
+                localStorage.getItem("rutaUSeleccion")
+            );
+        } catch (error) {
+            seleccion = null;
+        }
+
+        // Información de respaldo si se abre esta página directamente.
+        const rutaPredeterminada = {
+            numeroRuta: "1",
+            nombreRuta: "Ruta 1",
+            destinoRuta: "Campus → Centro",
+            parada: "Biblioteca"
+        };
+
+        const datos = seleccion || rutaPredeterminada;
+
+        // Mostrar los datos seleccionados.
+        document.getElementById("nombreRuta").textContent =
+            datos.nombreRuta || rutaPredeterminada.nombreRuta;
+
+        document.getElementById("destinoRuta").textContent =
+            datos.destinoRuta || rutaPredeterminada.destinoRuta;
+
+        document.getElementById("nombreParada").textContent =
+            datos.parada || rutaPredeterminada.parada;
+
+        document.getElementById("nombreParadaMapa").textContent =
+            datos.parada || rutaPredeterminada.parada;
+
+        // Guardar la información del recorrido actual.
+        localStorage.setItem(
+            "rutaUSeleccion",
+            JSON.stringify({
+                ...rutaPredeterminada,
+                ...datos
+            })
+        );
+
+        // Continuar al módulo de asientos.
+        document.getElementById("botonAsientos").addEventListener(
+            "click",
+            function () {
+                window.location.href = "asientos.html";
+            }
+        );
+        
+    </script>
+
+</body>
+</html>
